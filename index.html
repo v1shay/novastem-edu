@@ -125,18 +125,22 @@
       </div>
       <div>
   <video
-    src="how/demo-1.mp4"
-    autoplay
-    muted
-    loop
-    playsinline
-    style="
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border-radius: 20px;
-    "
-  ></video>
+  muted
+  autoplay
+  loop
+  playsinline
+  preload="auto"
+  controls
+  style="
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 20px;
+  "
+>
+  <source src="how/demo-1.mp4" type="video/mp4">
+</video>
+
   <div class="caption">Hands-on chemistry demonstration</div>
 </div>
 
