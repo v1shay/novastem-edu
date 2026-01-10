@@ -5,15 +5,11 @@
 :root {
   --green: #15803d;
   --green-dark: #0f5f2e;
-  --green-soft: rgba(21, 128, 61, 0.18);
+  --green-soft: rgba(21, 128, 61, 0.15);
 
-  --bg-hero: #e6f4ec;
+  --bg-hero: #eaf6ef;
   --bg-white: #ffffff;
-  --bg-soft: #edf8f1;
-  --bg-pastel: #eaf6ef;
-
-  --grid-line: rgba(21, 128, 61, 0.06);
-  --notebook-line: rgba(15, 95, 46, 0.07);
+  --bg-soft: #f6fbf8;
 
   --text: #0f172a;
   --muted: #475569;
@@ -29,11 +25,11 @@
 
 body {
   margin: 0;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text);
   background: var(--bg-hero);
   line-height: 1.6;
-  font-size: 17px;
+  font-size: 16.5px;
 }
 
 /* ===============================
@@ -48,67 +44,20 @@ body {
 
 .section {
   padding: 88px 0;
-  position: relative;
 }
 
 /* ===============================
-   GRID BACKGROUND (SUBTLE)
+   HEADINGS
 ================================ */
 
-.section {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-/* ===============================
-   HERO
-================================ */
-
-.hero {
-  background-color: var(--bg-hero);
-}
-
-.hero-inner {
-  text-align: center;
-}
-
-.hero-brand {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px; /* FIXED: closer to text */
-  margin-bottom: 22px;
-}
-
-.hero-logo {
-  height: 120px;
-}
-
-.hero h1 {
+h1, h2, h3, h4 {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 4.8rem;
-  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-.hero-tagline {
-  font-size: 1.55rem;
-  max-width: 860px;
-  margin: 20px auto;
-}
-
-.hero-credibility {
-  font-size: 1rem;
-  color: var(--muted);
-  margin-bottom: 36px;
-}
-
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 56px;
+.section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 24px;
 }
 
 /* ===============================
@@ -122,18 +71,65 @@ body {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
+  display: inline-block;
   white-space: nowrap;
 }
 
+.btn:hover {
+  opacity: 0.92;
+}
+
 /* ===============================
-   HERO IMAGES (UNCHANGED)
+   HERO
+================================ */
+
+.hero {
+  background: var(--bg-hero);
+}
+
+.hero-inner {
+  text-align: center;
+}
+
+.hero-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* FIX: logo closer to text */
+  margin-bottom: 18px;
+}
+
+.hero-logo {
+  height: 96px;
+}
+
+.hero h1 {
+  font-size: 4.6rem;
+  margin: 0;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  max-width: 860px;
+  margin: 20px auto;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+/* ===============================
+   HERO IMAGES
 ================================ */
 
 .hero-images {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 26px;
-  max-width: 960px;
+  gap: 24px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -141,7 +137,7 @@ body {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 20px;
 }
 
 /* ===============================
@@ -151,172 +147,144 @@ body {
 .impact-simple {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-  max-width: 1100px;
-  margin: 48px auto 0;
+  gap: 28px;
 }
 
 .impact-card {
   background: white;
-  padding: 46px 40px;
-  border-radius: 28px;
+  padding: 36px;
+  border-radius: 22px;
   text-align: center;
 }
 
 .impact-card h3 {
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 2.2rem;
-  margin-bottom: 14px;
-}
-
-.impact-card p {
-  font-size: 1.15rem;
-  color: var(--muted);
+  font-size: 1.9rem;
 }
 
 /* ===============================
-   HOW IT WORKS (BOXES RESTORED)
+   HOW IT WORKS — RESTORED BOXES
 ================================ */
 
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 34px;
+  gap: 28px;
 }
 
 .step {
-  background: white;              /* RESTORED */
-  padding: 36px;
-  border-radius: 22px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+  background: white;          /* RESTORED */
+  padding: 32px;              /* RESTORED */
+  border-radius: 20px;        /* RESTORED */
 }
 
 .step h3 {
   margin-bottom: 10px;
-  font-family: "Space Grotesk", sans-serif;
 }
 
 /* ===============================
-   WHAT WE TEACH (RESTORED)
+   WHAT WE TEACH (POSTERS FIXED)
 ================================ */
 
 .teach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .teach-card {
   background: white;
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
 .teach-card img {
   width: 100%;
   height: 260px;
-  object-fit: cover;              /* CRITICAL FIX */
+  object-fit: cover;          /* KEY FIX */
 }
 
 .teach-card-content {
-  padding: 22px;
-}
-
-.teach-card h4 {
-  font-size: 1.35rem;
+  padding: 18px 20px 22px;
 }
 
 /* ===============================
-   CLASSROOM (RESTORED)
+   CLASSROOM GRID (FIXED)
 ================================ */
 
 .classroom-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: 24px;
 }
 
 .classroom-grid img,
 .classroom-grid video {
   width: 100%;
-  height: 240px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 22px;
+  border-radius: 20px;
 }
 
 /* ===============================
-   FOUNDER (FIXED)
+   FOUNDER (MOBILE FIX)
 ================================ */
 
 .founder-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 40px;
   align-items: center;
 }
 
 .founder img {
-  max-width: 280px;   /* FIXED */
-  width: 100%;
+  max-width: 300px;
   border-radius: 22px;
 }
 
 /* ===============================
-   CONTACT BUTTONS (FIXED)
+   CONTACT BUTTONS FIX
 ================================ */
 
 .contact-buttons {
   display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 14px;
+  flex-wrap: wrap;           /* FIX */
 }
 
 /* ===============================
-   MOBILE FIXES (TARGETED)
+   MOBILE — ONLY SIZE FIXES
 ================================ */
 
 @media (max-width: 768px) {
 
   .hero-brand {
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .hero-logo {
-    height: 100px;
   }
 
   .hero h1 {
     font-size: 3.2rem;
   }
 
-  .hero-images {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-images img {
-    height: 220px;
-  }
-
-  .impact-simple,
+  .hero-images,
   .steps,
   .teach-grid,
+  .impact-simple,
   .classroom-grid,
   .founder-content {
     grid-template-columns: 1fr;
   }
 
   .teach-card img {
-    height: 220px;
+    height: 200px;
   }
 
   .classroom-grid img,
   .classroom-grid video {
-    height: 200px;
+    height: 180px;
   }
 
   .founder img {
-    max-width: 220px;
+    max-width: 220px;       /* FIXED */
     margin: 0 auto;
   }
 
