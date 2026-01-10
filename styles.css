@@ -399,3 +399,23 @@ body {
     animation: none;
   }
 }
+/* ===============================
+   CONTACT BUTTONS — MOBILE HARD FIX
+================================ */
+@media (max-width: 768px) {
+
+  .contact-buttons {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    width: 100% !important;
+  }
+
+  .contact-buttons .btn {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    padding: 18px 0 !important;
+  }
+
+}
