@@ -1,44 +1,46 @@
-/* ======================================================
-   GOOGLE FONTS
-====================================================== */
+/* ===============================
+   FONTS
+================================ */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
-/* ======================================================
+/* ===============================
    ROOT VARIABLES
-====================================================== */
+================================ */
+
 :root {
   --green: #15803d;
-  --green-dark: #0f5f2e;
-  --green-soft: rgba(21,128,61,0.12);
+  --green-soft: rgba(21, 128, 61, 0.12);
 
   --bg-white: #ffffff;
   --bg-green: #eaf6ef;
 
-  --grid-line: rgba(21,128,61,0.07);
+  --grid-line: rgba(21, 128, 61, 0.07);
 
   --text: #0f172a;
   --muted: #475569;
 }
 
-/* ======================================================
+/* ===============================
    RESET
-====================================================== */
+================================ */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
   color: var(--text);
   background: var(--bg-white);
   line-height: 1.6;
   font-size: 16.5px;
 }
 
-/* ======================================================
+/* ===============================
    LAYOUT
-====================================================== */
+================================ */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -50,7 +52,7 @@ body {
   position: relative;
 }
 
-/* alternating backgrounds (exclude hero) */
+/* alternating backgrounds EXCLUDING hero */
 .section:not(.hero):nth-of-type(even) {
   background: var(--bg-green);
 }
@@ -67,45 +69,19 @@ body {
   background-size: 48px 48px;
 }
 
-/* ======================================================
-   TYPOGRAPHY
-====================================================== */
+/* ===============================
+   HEADINGS
+================================ */
+
 h1, h2, h3, h4 {
   font-family: "Space Grotesk", sans-serif;
   letter-spacing: -0.02em;
 }
 
-.section h2 {
-  font-size: 2.8rem;
-  margin-bottom: 24px;
-}
-
-p {
-  color: var(--muted);
-}
-
-/* ======================================================
-   BUTTONS
-====================================================== */
-.btn {
-  background: var(--green);
-  color: #fff;
-  padding: 14px 26px;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  white-space: normal;
-  text-align: center;
-}
-
-.btn:hover {
-  opacity: 0.92;
-}
-
-/* ======================================================
+/* ===============================
    HERO
-====================================================== */
+================================ */
+
 .hero {
   background: var(--bg-white);
   overflow: hidden;
@@ -115,12 +91,12 @@ p {
 .hero::after {
   content: "";
   position: absolute;
-  top: 36px;
+  top: 40px;
   width: 200px;
   height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.95;
+  opacity: 0.9;
   pointer-events: none;
 }
 
@@ -137,14 +113,14 @@ p {
 .hero-inner {
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-brand {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* logo closer to text */
   margin-bottom: 18px;
 }
 
@@ -163,6 +139,7 @@ p {
   margin: 20px auto;
 }
 
+/* CTA buttons FIXED */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -173,45 +150,27 @@ p {
 
 .hero-buttons .btn {
   max-width: 320px;
-}
-
-/* ======================================================
-   HERO IMAGES
-====================================================== */
-.hero-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero-images img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 20px;
-}
-
-/* ======================================================
-   IMPACT
-====================================================== */
-.impact-simple {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-.impact-card {
-  background: #fff;
-  padding: 40px;
-  border-radius: 22px;
   text-align: center;
+  white-space: normal;
 }
 
-/* ======================================================
-   HOW IT WORKS (BOXES)
-====================================================== */
+/* ===============================
+   BUTTONS
+================================ */
+
+.btn {
+  background: var(--green);
+  color: white;
+  padding: 14px 26px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===============================
+   HOW IT WORKS — BOXES RESTORED
+================================ */
+
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -219,14 +178,15 @@ p {
 }
 
 .step {
-  background: #ffffff;
+  background: white;
   padding: 32px;
   border-radius: 20px;
 }
 
-/* ======================================================
-   WHAT WE TEACH (TALLER CARDS)
-====================================================== */
+/* ===============================
+   WHAT WE TEACH — TALLER CARDS
+================================ */
+
 .teach-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -234,14 +194,14 @@ p {
 }
 
 .teach-card {
-  background: #fff;
+  background: white;
   border-radius: 20px;
   overflow: hidden;
 }
 
 .teach-card img {
   width: 100%;
-  height: 340px;
+  height: 340px; /* taller to fit posters */
   object-fit: cover;
 }
 
@@ -249,9 +209,10 @@ p {
   padding: 20px;
 }
 
-/* ======================================================
-   CLASSROOM
-====================================================== */
+/* ===============================
+   CLASSROOM (UNCHANGED)
+================================ */
+
 .classroom-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -266,9 +227,10 @@ p {
   border-radius: 20px;
 }
 
-/* ======================================================
-   FOUNDER (FIXED)
-====================================================== */
+/* ===============================
+   FOUNDER — FIXED
+================================ */
+
 .founder-content {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -285,18 +247,10 @@ p {
   max-width: 520px;
 }
 
-/* ======================================================
-   CONTACT
-====================================================== */
-.contact-buttons {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
+/* ===============================
+   MOBILE FIXES (ONLY WHAT’S NEEDED)
+================================ */
 
-/* ======================================================
-   MOBILE FIXES
-====================================================== */
 @media (max-width: 768px) {
 
   .hero h1 {
@@ -313,19 +267,14 @@ p {
   .hero-images,
   .steps,
   .teach-grid,
-  .impact-simple,
   .classroom-grid,
+  .impact-simple,
   .founder-content {
     grid-template-columns: 1fr;
   }
 
   .teach-card img {
     height: 240px;
-  }
-
-  .classroom-grid img,
-  .classroom-grid video {
-    height: 180px;
   }
 
   .founder img {
