@@ -27,16 +27,12 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-snap-type: y mandatory;
-}
-
 body {
   margin: 0;
-  font-family: "Inter", sans-serif;
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
   color: var(--text);
   background: var(--bg-hero);
-  line-height: 1.6;
+  line-height: 1.65;
   font-size: 17px;
 }
 
@@ -53,86 +49,31 @@ body {
 .section {
   padding: 88px 0;
   position: relative;
-  scroll-snap-align: start;
-}
-
-/* alternating section colors */
-.section:nth-of-type(2) {
-  background-color: var(--bg-white);
-}
-
-.section:nth-of-type(3) {
-  background-color: var(--bg-pastel);
 }
 
 /* ===============================
-   SCIENCE GRID
-================================ */
-
-.section {
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: gridScroll 120s linear infinite;
-}
-
-@keyframes gridScroll {
-  to {
-    background-position: 480px 480px;
-  }
-}
-
-/* ===============================
-   NOTEBOOK PAPER
-================================ */
-
-.section:nth-of-type(2),
-.section:nth-of-type(4) {
-  background-image:
-    repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 30px,
-      var(--notebook-line) 32px
-    ),
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-}
-
-/* ===============================
-   HERO
+   HERO (LEAVES FIXED)
 ================================ */
 
 .hero {
   background-color: var(--bg-hero);
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(21,128,61,.15) 2px, transparent 2px),
-    radial-gradient(circle at 85% 30%, rgba(21,128,61,.12) 2px, transparent 2px);
-  background-size: 160px 160px;
+    url("leaf-left.png"),
+    url("leaf-right.png"),
+    radial-gradient(circle at 12% 22%, rgba(21,128,61,.14) 2px, transparent 2px),
+    radial-gradient(circle at 86% 28%, rgba(21,128,61,.12) 2px, transparent 2px);
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+  background-position:
+    left -60px top 40px,
+    right -60px top 40px,
+    0 0,
+    0 0;
+  background-size:
+    300px auto,
+    300px auto,
+    160px 160px,
+    160px 160px;
   overflow: hidden;
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 180px;
-  height: 100%;
-  background: url("leaf.png") no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  opacity: 0.9;
-}
-
-.hero::before {
-  left: 0;
-}
-
-.hero::after {
-  right: 0;
-  transform: scaleX(-1);
 }
 
 .hero-inner {
@@ -143,24 +84,26 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px; /* tighter logo spacing */
-  margin-bottom: 22px;
+  gap: 14px; /* tighter */
+  margin-bottom: 18px;
 }
 
 .hero-logo {
-  height: 140px;
+  height: 150px;
 }
 
 .hero h1 {
   font-family: "Space Grotesk", sans-serif;
   font-size: 5.2rem;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
 .hero-tagline {
   font-size: 1.6rem;
-  max-width: 880px;
+  max-width: 860px;
   margin: 22px auto;
+  font-weight: 500;
 }
 
 .hero-credibility {
@@ -183,7 +126,7 @@ body {
 .btn {
   background: var(--green);
   color: white;
-  padding: 14px 30px;
+  padding: 14px 32px;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
@@ -243,22 +186,6 @@ body {
 }
 
 /* ===============================
-   HOW IT WORKS
-================================ */
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 34px;
-}
-
-.step {
-  background: white;
-  padding: 36px;
-  border-radius: 22px;
-}
-
-/* ===============================
    WHAT WE TEACH
 ================================ */
 
@@ -286,6 +213,7 @@ body {
 }
 
 .teach-card h4 {
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1.35rem;
 }
 
@@ -308,19 +236,34 @@ body {
 }
 
 /* ===============================
-   FOUNDER
+   FOUNDER (FIXED)
 ================================ */
 
 .founder-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 42px;
   align-items: center;
 }
 
 .founder img {
-  max-width: 300px;
+  max-width: 260px; /* smaller */
   border-radius: 22px;
+}
+
+/* ===============================
+   CONTACT (FIXED)
+================================ */
+
+.contact-buttons {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.contact-buttons .btn {
+  flex: 1 1 160px;
+  text-align: center;
 }
 
 /* ===============================
@@ -329,17 +272,31 @@ body {
 
 @media (max-width: 768px) {
 
+  .hero {
+    background-size:
+      200px auto,
+      200px auto,
+      120px 120px,
+      120px 120px;
+
+    background-position:
+      left -80px top 20px,
+      right -80px top 20px,
+      0 0,
+      0 0;
+  }
+
   .hero-brand {
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
 
   .hero-logo {
-    height: 120px;
+    height: 110px;
   }
 
   .hero h1 {
-    font-size: 3.2rem;
+    font-size: 3.1rem;
   }
 
   .hero-tagline {
@@ -350,47 +307,20 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .hero-images img {
-    height: 220px;
-  }
-
   .impact-simple,
-  .steps,
   .teach-grid,
   .classroom-grid,
   .founder-content {
     grid-template-columns: 1fr;
   }
 
-  .impact-card,
-  .step,
-  .teach-card {
-    padding: 32px;
-  }
-
-  .founder-content {
-    text-align: center;
-  }
-
   .founder img {
-    max-width: 220px;
-    margin: 0 auto 24px;
-  }
-
-  .section-text {
-    font-size: 1.05rem;
+    margin: 0 auto;
   }
 
   .contact-buttons {
     flex-direction: column;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .contact-buttons .btn {
-    width: 100%;
-    max-width: 260px;
-    text-align: center;
+    align-items: stretch;
   }
 }
 
