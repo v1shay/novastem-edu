@@ -1,5 +1,5 @@
 /* ===============================
-   GOOGLE FONTS
+   FONTS
 ================================ */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 
@@ -9,12 +9,10 @@
 
 :root {
   --green: #15803d;
-  --green-dark: #0f5f2e;
-  --green-soft: rgba(21, 128, 61, 0.14);
+  --green-soft: rgba(21, 128, 61, 0.12);
 
-  --bg-hero: #ffffff;
   --bg-white: #ffffff;
-  --bg-soft: #eaf6ef;
+  --bg-green: #eaf6ef;
 
   --grid-line: rgba(21, 128, 61, 0.07);
 
@@ -54,16 +52,16 @@ body {
   position: relative;
 }
 
-/* alternating backgrounds (excluding hero) */
-.section:nth-of-type(even) {
-  background: var(--bg-soft);
+/* alternating backgrounds EXCLUDING hero */
+.section:not(.hero):nth-of-type(even) {
+  background: var(--bg-green);
 }
 
-.section:nth-of-type(odd):not(.hero) {
+.section:not(.hero):nth-of-type(odd) {
   background: var(--bg-white);
 }
 
-/* grid pattern on non-hero sections */
+/* grid overlay on non-hero sections only */
 .section:not(.hero) {
   background-image:
     linear-gradient(var(--grid-line) 1px, transparent 1px),
@@ -80,11 +78,6 @@ h1, h2, h3, h4 {
   letter-spacing: -0.02em;
 }
 
-.section h2 {
-  font-size: 2.8rem;
-  margin-bottom: 24px;
-}
-
 /* ===============================
    HERO
 ================================ */
@@ -99,11 +92,12 @@ h1, h2, h3, h4 {
   content: "";
   position: absolute;
   top: 40px;
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.9;
+  pointer-events: none;
 }
 
 .hero::before {
@@ -119,14 +113,14 @@ h1, h2, h3, h4 {
 .hero-inner {
   text-align: center;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-brand {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 10px; /* logo closer to text */
   margin-bottom: 18px;
 }
 
@@ -145,6 +139,7 @@ h1, h2, h3, h4 {
   margin: 20px auto;
 }
 
+/* CTA buttons FIXED */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -154,8 +149,9 @@ h1, h2, h3, h4 {
 }
 
 .hero-buttons .btn {
-  max-width: 100%;
+  max-width: 320px;
   text-align: center;
+  white-space: normal;
 }
 
 /* ===============================
@@ -169,51 +165,10 @@ h1, h2, h3, h4 {
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  white-space: normal;
-}
-
-.btn:hover {
-  opacity: 0.92;
 }
 
 /* ===============================
-   HERO IMAGES
-================================ */
-
-.hero-images {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.hero-images img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 20px;
-}
-
-/* ===============================
-   IMPACT
-================================ */
-
-.impact-simple {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-
-.impact-card {
-  background: white;
-  padding: 40px;
-  border-radius: 22px;
-  text-align: center;
-}
-
-/* ===============================
-   HOW IT WORKS (BOXES RESTORED)
+   HOW IT WORKS — BOXES RESTORED
 ================================ */
 
 .steps {
@@ -224,12 +179,12 @@ h1, h2, h3, h4 {
 
 .step {
   background: white;
-  padding: 34px;
-  border-radius: 22px;
+  padding: 32px;
+  border-radius: 20px;
 }
 
 /* ===============================
-   WHAT WE TEACH (TALLER CARDS)
+   WHAT WE TEACH — TALLER CARDS
 ================================ */
 
 .teach-grid {
@@ -246,7 +201,7 @@ h1, h2, h3, h4 {
 
 .teach-card img {
   width: 100%;
-  height: 320px; /* taller */
+  height: 340px; /* taller to fit posters */
   object-fit: cover;
 }
 
@@ -255,7 +210,7 @@ h1, h2, h3, h4 {
 }
 
 /* ===============================
-   CLASSROOM
+   CLASSROOM (UNCHANGED)
 ================================ */
 
 .classroom-grid {
@@ -273,33 +228,27 @@ h1, h2, h3, h4 {
 }
 
 /* ===============================
-   FOUNDER (FIXED)
+   FOUNDER — FIXED
 ================================ */
 
 .founder-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   gap: 32px;
   align-items: center;
 }
 
 .founder img {
-  max-width: 260px;
+  max-width: 240px;
   border-radius: 20px;
 }
 
-/* ===============================
-   CONTACT BUTTONS
-================================ */
-
-.contact-buttons {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+.founder-content p {
+  max-width: 520px;
 }
 
 /* ===============================
-   MOBILE FIXES
+   MOBILE FIXES (ONLY WHAT’S NEEDED)
 ================================ */
 
 @media (max-width: 768px) {
@@ -308,11 +257,18 @@ h1, h2, h3, h4 {
     font-size: 3.2rem;
   }
 
+  .hero::before,
+  .hero::after {
+    width: 140px;
+    height: 140px;
+    top: 20px;
+  }
+
   .hero-images,
   .steps,
   .teach-grid,
-  .impact-simple,
   .classroom-grid,
+  .impact-simple,
   .founder-content {
     grid-template-columns: 1fr;
   }
@@ -321,20 +277,13 @@ h1, h2, h3, h4 {
     height: 240px;
   }
 
-  .classroom-grid img,
-  .classroom-grid video {
-    height: 180px;
-  }
-
   .founder img {
     max-width: 200px;
     margin: 0 auto;
   }
 
-  .hero::before,
-  .hero::after {
-    width: 160px;
-    height: 160px;
-    top: 20px;
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 300px;
   }
 }
