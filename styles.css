@@ -27,6 +27,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+}
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -49,6 +53,7 @@ body {
 .section {
   padding: 88px 0;
   position: relative;
+  scroll-snap-align: start;
 }
 
 /* alternating section colors */
@@ -61,7 +66,7 @@ body {
 }
 
 /* ===============================
-   SCIENCE GRID (VISIBLE)
+   SCIENCE GRID
 ================================ */
 
 .section {
@@ -79,7 +84,7 @@ body {
 }
 
 /* ===============================
-   NOTEBOOK PAPER (SECTIONS)
+   NOTEBOOK PAPER
 ================================ */
 
 .section:nth-of-type(2),
@@ -105,6 +110,29 @@ body {
     radial-gradient(circle at 10% 20%, rgba(21,128,61,.15) 2px, transparent 2px),
     radial-gradient(circle at 85% 30%, rgba(21,128,61,.12) 2px, transparent 2px);
   background-size: 160px 160px;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 180px;
+  height: 100%;
+  background: url("leaf.png") no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.hero::before {
+  left: 0;
+}
+
+.hero::after {
+  right: 0;
+  transform: scaleX(-1);
 }
 
 .hero-inner {
@@ -115,7 +143,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 22px;
+  gap: 14px; /* tighter logo spacing */
   margin-bottom: 22px;
 }
 
@@ -296,7 +324,7 @@ body {
 }
 
 /* ===============================
-   MOBILE FIXES (REAL)
+   MOBILE FIXES (CRITICAL)
 ================================ */
 
 @media (max-width: 768px) {
@@ -338,6 +366,31 @@ body {
   .step,
   .teach-card {
     padding: 32px;
+  }
+
+  .founder-content {
+    text-align: center;
+  }
+
+  .founder img {
+    max-width: 220px;
+    margin: 0 auto 24px;
+  }
+
+  .section-text {
+    font-size: 1.05rem;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .contact-buttons .btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
   }
 }
 
