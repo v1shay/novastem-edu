@@ -14,6 +14,9 @@
   <style>
     body {
       background: #e6f4ec;
+
+  <div class="lesson-box" id="learn-section"></div>
+
     }
 
     /* ===============================
@@ -199,3 +202,25 @@
 
 </body>
 </html>
+
+<script type="module">
+  import { generateLearnSection } from "./lesson-engine.js";
+
+  const params = new URLSearchParams(window.location.search);
+
+  const subject = params.get("subject");
+  const pillar = params.get("pillar");
+  const lesson = params.get("lesson");
+
+  const learnEl = document.getElementById("learn-section");
+
+  generateLearnSection({ subject, pillar, lesson })
+    .then(html => {
+      learnEl.innerHTML = html;
+    })
+    .catch(err => {
+      learnEl.innerHTML = "<p>Error loading lesson.</p>";
+      console.error(err);
+    });
+</script>
+
