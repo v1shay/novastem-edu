@@ -1,48 +1,69 @@
-import { LESSON_CONTRACTS } from "../data/lesson-contracts.js";
+// lesson-engine.js
 
-/* ===============================
-   READ URL PARAMS
-================================ */
-const params = new URLSearchParams(window.location.search);
+import { LESSON_CONTRACTS } from "./data/lesson-contracts.js";
 
-const subjectId = params.get("subject");
-const pillarId = params.get("pillar");
-const lessonId = params.get("lesson");
+export async function generateLearnSection({
+  subject,
+  pillar,
+  lesson
+}) {
+  const contract =
+    LESSON_CONTRACTS?.[subject]?.[pillar]?.[lesson];
 
-if (!subjectId || !pillarId || !lessonId) {
-  throw new Error("Missing subject, pillar, or lesson in URL");
+  if (!contract) {
+    throw new Error("Lesson contract not found.");
+  }
+
+  const prompt = `
+You are an expert educator.
+
+Your task is to generate the LEARN section of a lesson
+STRICTLY following this contract.
+
+RULES (NON-NEGOTIABLE):
+- Teach only the core concept
+- Do NOT include practice questions
+- Do NOT include quiz questions
+- Do NOT give answers to anything
+- Use clear, structured explanations
+- Respect the depth specification exactly
+
+LEARNING GOAL:
+Core Concept: ${contract.learningGoal.coreConcept}
+Why It Matters: ${contract.learningGoal.whyItMatters}
+
+MISCONCEPTIONS TO AVOID:
+${contract.learningGoal.misconceptionsToAvoid.join(", ")}
+
+DEPTH:
+Abstraction Level: ${contract.depthSpec.abstractionLevel}
+Explanation Depth: ${contract.depthSpec.explanationDepth}
+
+MUST INCLUDE:
+${contract.learn.mustInclude.join(", ")}
+
+FORMAT:
+- Paragraphs and bullet lists
+- No code
+- Text-only diagrams if needed
+
+Now generate the LEARN section.
+`;
+
+  // TEMP MOCK (until API key is wired)
+  return `
+<h2>Learn</h2>
+<p><strong>What is an Algorithm?</strong></p>
+<p>An algorithm is a clear, step-by-step set of instructions designed to solve a specific problem.</p>
+
+<ul>
+  <li>Algorithms must be precise</li>
+  <li>The order of steps matters</li>
+  <li>They must eventually stop</li>
+</ul>
+
+<p><strong>Example:</strong> Following a recipe to bake a cake is an algorithm.</p>
+
+<p><strong>Counterexample:</strong> “Bake until it looks right” is not an algorithm because it is vague.</p>
+`;
 }
-
-/* ===============================
-   LOOK UP LESSON CONTRACT
-================================ */
-const lesson =
-  LESSON_CONTRACTS?.[subjectId]?.[pillarId]?.[lessonId];
-
-if (!lesson) {
-  throw new Error("Lesson contract not found");
-}
-
-/* ===============================
-   RENDER CORE METADATA
-================================ */
-document.getElementById("lesson-title").textContent = lesson.title;
-
-document.getElementById("lesson-goal").textContent =
-  lesson.learningGoal.coreConcept;
-
-document.getElementById("lesson-why").textContent =
-  lesson.learningGoal.whyItMatters;
-
-/* ===============================
-   SECTION PLACEHOLDERS
-================================ */
-document.getElementById("learn-content").textContent =
-  "Learning content will be generated here.";
-
-document.getElementById("practice-content").textContent =
-  "Practice activities will appear here.";
-
-document.getElementById("quiz-content").textContent =
-  "Quiz will unlock after practice.";
-
