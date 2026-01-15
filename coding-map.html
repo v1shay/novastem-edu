@@ -5,14 +5,19 @@
   <title>NovaSTEM EDU — Coding Roadmap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 
   <style>
     body {
       background: #e6f4ec;
+      margin: 0;
     }
 
+    /* ===============================
+       PAGE CONTAINER
+    ================================ */
     .map-container {
       min-height: 100vh;
       display: flex;
@@ -20,6 +25,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding-top: 60px; /* optical centering */
     }
 
     h1 {
@@ -31,30 +37,37 @@
     .subtitle {
       color: #475569;
       max-width: 640px;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
+
+    /* ===============================
+       BRAIN CORE
+    ================================ */
     .brain-wrapper {
       position: relative;
-      width: 560px;
-      height: 560px;
+      width: 640px;
+      height: 640px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 12px;
     }
 
     .brain-image {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: contain;
       pointer-events: none;
       user-select: none;
-      filter: drop-shadow(0 20px 60px rgba(21, 128, 61, 0.35));
+      filter: drop-shadow(0 24px 70px rgba(21, 128, 61, 0.35));
     }
 
+    /* ===============================
+       PILLAR NODES
+    ================================ */
     .pillar-node {
       position: absolute;
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: white;
       border: 3px solid #15803d;
@@ -63,18 +76,19 @@
       justify-content: center;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      z-index: 10;
     }
 
     .pillar-node:hover {
-      transform: scale(1.08);
-      box-shadow: 0 10px 30px rgba(21, 128, 61, 0.35);
+      transform: scale(1.12);
+      box-shadow: 0 14px 36px rgba(21, 128, 61, 0.4);
     }
 
     .pillar-label {
       position: absolute;
-      top: 62px;
-      width: 160px;
+      top: 64px;
+      width: 180px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 0.9rem;
@@ -82,6 +96,7 @@
       color: #0f172a;
       text-align: center;
       pointer-events: none;
+      line-height: 1.2;
     }
   </style>
 </head>
@@ -108,12 +123,16 @@
 <script>
   const brain = document.getElementById("brain");
 
+  /* ===============================
+     ORBITAL POSITIONS (FLOATING)
+     Tuned for 640px brain
+  ================================ */
   const positions = [
-    { top: "12%", left: "50%" },
-    { top: "30%", left: "76%" }, // was 78%
-    { top: "67%", left: "68%" },
-    { top: "70%", left: "32%" },
-    { top: "38%", left: "18%" }
+    { top: "6%",  left: "50%" },  // 1 — top
+    { top: "28%", left: "82%" },  // 2 — upper right
+    { top: "72%", left: "72%" },  // 3 — lower right
+    { top: "78%", left: "28%" },  // 4 — bottom left
+    { top: "34%", left: "18%" }   // 5 — upper left
   ];
 
   COURSE_MAP.coding.pillars.forEach((pillar, index) => {
@@ -121,7 +140,6 @@
     node.className = "pillar-node";
     node.style.top = positions[index].top;
     node.style.left = positions[index].left;
-
     node.innerText = index + 1;
 
     node.onclick = () => {
