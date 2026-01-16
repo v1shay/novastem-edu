@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>NovaSTEM EDU — Coding Roadmap</title>
+  <title>NovaSTEM EDU — Coding Pillar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Fonts -->
@@ -13,40 +13,41 @@
     body {
       background: #e6f4ec;
       margin: 0;
+      font-family: "Space Grotesk", sans-serif;
     }
 
     /* ===============================
-       PAGE CONTAINER
+       PAGE LAYOUT
     ================================ */
-    .map-container {
+    .pillar-container {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-top: 60px; /* optical centering */
+      padding: 80px 24px;
     }
 
     h1 {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 3rem;
+      font-size: 2.8rem;
       margin-bottom: 12px;
     }
 
-    .subtitle {
+    .pillar-goal {
       color: #475569;
-      max-width: 640px;
-      margin-bottom: 40px;
+      max-width: 620px;
+      margin-bottom: 48px;
+      font-size: 1.05rem;
     }
 
     /* ===============================
-       BRAIN CORE
+       BRAIN + LESSON ORBITS
     ================================ */
     .brain-wrapper {
       position: relative;
-      width: 640px;
-      height: 640px;
+      width: 520px;
+      height: 520px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -58,13 +59,13 @@
       object-fit: contain;
       pointer-events: none;
       user-select: none;
-      filter: drop-shadow(0 24px 70px rgba(21, 128, 61, 0.35));
+      filter: drop-shadow(0 22px 60px rgba(21, 128, 61, 0.35));
     }
 
     /* ===============================
-       PILLAR NODES
+       LESSON NODES
     ================================ */
-    .pillar-node {
+    .lesson-node {
       position: absolute;
       width: 56px;
       height: 56px;
@@ -80,12 +81,12 @@
       z-index: 10;
     }
 
-    .pillar-node:hover {
+    .lesson-node:hover {
       transform: scale(1.12);
       box-shadow: 0 14px 36px rgba(21, 128, 61, 0.4);
     }
 
-    .pillar-label {
+    .lesson-label {
       position: absolute;
       top: 64px;
       width: 180px;
@@ -95,60 +96,91 @@
       font-weight: 600;
       color: #0f172a;
       text-align: center;
-      pointer-events: none;
       line-height: 1.2;
+      pointer-events: none;
+    }
+
+    /* ===============================
+       NAV
+    ================================ */
+    .back-btn {
+      margin-top: 48px;
     }
   </style>
 </head>
 
 <body>
 
-<div class="map-container">
-  <h1>Coding Roadmap</h1>
-  <p class="subtitle">
-    Progress through five core pillars that build from pure thinking
-    to full end-to-end AI development.
-  </p>
+<div class="pillar-container">
+
+  <h1 id="pillar-title">Pillar</h1>
+  <p class="pillar-goal" id="pillar-goal"></p>
 
   <div class="brain-wrapper" id="brain">
-    <img
-      src="brain.png"
-      alt="Coding Brain Roadmap"
-      class="brain-image"
-    />
+    <img src="brain.png" alt="Pillar Brain" class="brain-image" />
   </div>
+
+  <a href="coding-map.html" class="btn back-btn">← Back to Roadmap</a>
+
 </div>
 
 <script src="data/course-map.js"></script>
 <script>
+  const params = new URLSearchParams(window.location.search);
+  const pillarId = params.get("pillar");
+
+  const pillar = COURSE_MAP.coding.pillars.find(p => p.id === pillarId);
+
+  if (!pillar) {
+    document.getElementById("pillar-title").innerText = "Invalid Pillar";
+    document.getElementById("pillar-goal").innerText =
+      "This pillar does not exist.";
+    throw new Error("Invalid pillar ID");
+  }
+
+  document.getElementById("pillar-title").innerText = pillar.title;
+  document.getElementById("pillar-goal").innerText = pillar.goal;
+
   const brain = document.getElementById("brain");
 
   /* ===============================
-     ORBITAL POSITIONS (FLOATING)
-     Tuned for 640px brain
+     TEMP LESSON SEED (MVP)
+     (AI WILL GENERATE THESE LATER)
   ================================ */
-  const positions = [
-    { top: "6%",  left: "50%" },  // 1 — top
-    { top: "28%", left: "82%" },  // 2 — upper right
-    { top: "72%", left: "72%" },  // 3 — lower right
-    { top: "78%", left: "28%" },  // 4 — bottom left
-    { top: "34%", left: "15%" }   // 5 — upper left
+  const lessons = [
+    { id: "lesson-1", title: "Introduction" },
+    { id: "lesson-2", title: "Core Concept" },
+    { id: "lesson-3", title: "Worked Examples" },
+    { id: "lesson-4", title: "Common Mistakes" },
+    { id: "lesson-5", title: "Applied Challenge" }
   ];
 
-  COURSE_MAP.coding.pillars.forEach((pillar, index) => {
+  /* ===============================
+     ORBIT POSITIONS
+  ================================ */
+  const positions = [
+    { top: "6%",  left: "50%" },
+    { top: "28%", left: "82%" },
+    { top: "72%", left: "72%" },
+    { top: "78%", left: "28%" },
+    { top: "34%", left: "7%" }
+  ];
+
+  lessons.forEach((lesson, index) => {
     const node = document.createElement("div");
-    node.className = "pillar-node";
+    node.className = "lesson-node";
     node.style.top = positions[index].top;
     node.style.left = positions[index].left;
     node.innerText = index + 1;
 
     node.onclick = () => {
-      window.location.href = `coding-pillar.html?pillar=${pillar.id}`;
+      window.location.href =
+        `lesson.html?pillar=${pillarId}&lesson=${lesson.id}`;
     };
 
     const label = document.createElement("div");
-    label.className = "pillar-label";
-    label.innerText = pillar.title;
+    label.className = "lesson-label";
+    label.innerText = lesson.title;
 
     node.appendChild(label);
     brain.appendChild(node);
