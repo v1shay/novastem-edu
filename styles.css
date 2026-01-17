@@ -27,6 +27,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
@@ -49,6 +54,11 @@ body {
 .section {
   padding: 88px 0;
   position: relative;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* alternating section colors */
@@ -319,7 +329,6 @@ body {
 ================================ */
 
 @media (max-width: 768px) {
-
   .hero-brand {
     flex-direction: column;
     gap: 12px;
@@ -344,8 +353,6 @@ body {
   .hero-images img {
     height: 220px;
   }
-   
-@media (max-width: 768px) {
 
   .founder-content {
     display: flex;
@@ -358,7 +365,6 @@ body {
     max-width: 160px;
     margin-bottom: 24px;
   }
-@media (max-width: 768px) {
 
   .contact-buttons {
     display: flex;
@@ -371,9 +377,6 @@ body {
     width: 100%;
     text-align: center;
   }
-
-
-}
 
   .impact-simple,
   .steps,
@@ -398,39 +401,4 @@ body {
   .section {
     animation: none;
   }
-}
-/* ===============================
-   CONTACT BUTTONS — MOBILE HARD FIX
-================================ */
-@media (max-width: 768px) {
-
-  .contact-buttons {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
-    width: 100% !important;
-  }
-
-  .contact-buttons .btn {
-    display: block !important;
-    width: 100% !important;
-    text-align: center !important;
-    padding: 18px 0 !important;
-  }
-   html, body {
-  height: 100%;
-  scroll-behavior: smooth;
-}
-
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.snap-section {
-  scroll-snap-align: start;
-  height: 100vh;
-}
-
 }
